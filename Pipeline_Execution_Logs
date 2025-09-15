@@ -1,0 +1,945 @@
+Started by user koteswararao
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/koti-BMS-App
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clean Workspace)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout from Git)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/gk020601/Book-My-Show.git
+ > git init /var/lib/jenkins/workspace/koti-BMS-App # timeout=10
+Fetching upstream changes from https://github.com/gk020601/Book-My-Show.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/gk020601/Book-My-Show.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/gk020601/Book-My-Show.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 3696268997dfe7ce7e16a749d3492c86221690fb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3696268997dfe7ce7e16a749d3492c86221690fb # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 3696268997dfe7ce7e16a749d3492c86221690fb # timeout=10
+Commit message: "Update BMS-Document.txt"
+ > git rev-list --no-walk 3696268997dfe7ce7e16a749d3492c86221690fb # timeout=10
+[Pipeline] sh
++ ls -la
+total 68
+drwxr-xr-x 4 jenkins jenkins  4096 Sep 14 10:20 .
+drwxr-xr-x 5 jenkins jenkins  4096 Sep 14 10:20 ..
+drwxr-xr-x 8 jenkins jenkins  4096 Sep 14 10:20 .git
+-rw-r--r-- 1 jenkins jenkins 30439 Sep 14 10:20 BMS-Document.txt
+-rw-r--r-- 1 jenkins jenkins  3669 Sep 14 10:20 Jenkinsfile1
+-rw-r--r-- 1 jenkins jenkins  3991 Sep 14 10:20 Jenkinsfile2
+-rw-r--r-- 1 jenkins jenkins     1 Sep 14 10:20 README.md
+drwxr-xr-x 4 jenkins jenkins  4096 Sep 14 10:20 bookmyshow-app
+-rw-r--r-- 1 jenkins jenkins   418 Sep 14 10:20 deployment.yml
+-rw-r--r-- 1 jenkins jenkins   219 Sep 14 10:20 service.yml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonar-server
+[Pipeline] {
+[Pipeline] sh
++ /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner -Dsonar.projectName=BMS -Dsonar.projectKey=BMS
+10:20:20.306 INFO  Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/conf/sonar-scanner.properties
+10:20:20.313 INFO  Project root configuration file: NONE
+10:20:20.346 INFO  SonarScanner CLI 7.2.0.5079
+10:20:20.350 INFO  Linux 6.14.0-1011-aws amd64
+10:20:21.975 INFO  Communicating with SonarQube Server 9.9.8.100196
+10:20:22.843 INFO  Load global settings
+10:20:22.964 INFO  Load global settings (done) | time=123ms
+10:20:22.967 INFO  Server id: 147B411E-AZlGni0Yt5BHwl8j43wR
+10:20:22.974 INFO  User cache: /var/lib/jenkins/.sonar/cache
+10:20:22.981 INFO  Load/download plugins
+10:20:22.981 INFO  Load plugins index
+10:20:23.037 INFO  Load plugins index (done) | time=56ms
+10:20:23.156 INFO  Load/download plugins (done) | time=175ms
+10:20:23.947 INFO  Process project properties
+10:20:23.948 INFO  Process project properties (done) | time=1ms
+10:20:23.951 INFO  Execute project builders
+10:20:23.953 INFO  Execute project builders (done) | time=2ms
+10:20:23.956 INFO  Project key: BMS
+10:20:23.957 INFO  Base dir: /var/lib/jenkins/workspace/koti-BMS-App
+10:20:23.957 INFO  Working dir: /var/lib/jenkins/workspace/koti-BMS-App/.scannerwork
+10:20:23.964 INFO  Load project settings for component key: 'BMS'
+10:20:23.999 INFO  Load project settings for component key: 'BMS' (done) | time=35ms
+10:20:24.230 INFO  Auto-configuring with CI 'Jenkins'
+10:20:24.232 INFO  Load quality profiles
+10:20:24.303 INFO  Load quality profiles (done) | time=71ms
+10:20:24.309 INFO  Load active rules
+10:20:26.753 INFO  Load active rules (done) | time=2444ms
+10:20:26.767 INFO  Load analysis cache
+10:20:26.821 INFO  Load analysis cache | time=54ms
+10:20:26.929 INFO  Load project repositories
+10:20:26.958 INFO  Load project repositories (done) | time=29ms
+10:20:26.999 INFO  Indexing files...
+10:20:26.999 INFO  Project configuration:
+10:20:27.509 INFO  106 files indexed
+10:20:27.509 INFO  0 files ignored because of scm ignore settings
+10:20:27.511 INFO  Quality profile for css: Sonar way
+10:20:27.511 INFO  Quality profile for js: Sonar way
+10:20:27.511 INFO  Quality profile for json: Sonar way
+10:20:27.511 INFO  Quality profile for web: Sonar way
+10:20:27.511 INFO  Quality profile for yaml: Sonar way
+10:20:27.511 INFO  ------------- Run sensors on module BMS
+10:20:27.658 INFO  Load metrics repository
+10:20:27.692 INFO  Load metrics repository (done) | time=35ms
+10:20:29.525 INFO  Sensor JaCoCo XML Report Importer [jacoco]
+10:20:29.526 INFO  'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+10:20:29.527 INFO  No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+10:20:29.527 INFO  Sensor JaCoCo XML Report Importer [jacoco] (done) | time=3ms
+10:20:29.527 INFO  Sensor IaC CloudFormation Sensor [iac]
+10:20:29.828 INFO  0 source files to be analyzed
+10:20:29.922 INFO  0/0 source files have been analyzed
+10:20:29.922 INFO  Sensor IaC CloudFormation Sensor [iac] (done) | time=395ms
+10:20:29.922 INFO  Sensor IaC Kubernetes Sensor [iac]
+10:20:30.055 INFO  2 source files to be analyzed
+10:20:30.280 INFO  2/2 source files have been analyzed
+10:20:30.281 INFO  Sensor IaC Kubernetes Sensor [iac] (done) | time=359ms
+10:20:30.281 INFO  Sensor JavaScript analysis [javascript]
+10:20:34.515 WARN  Node.js version 24 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]
+10:20:34.538 INFO  62 source files to be analyzed
+10:20:40.315 INFO  62/62 source files have been analyzed
+10:20:40.316 INFO  Hit the cache for 0 out of 62
+10:20:40.317 INFO  Miss the cache for 62 out of 62: ANALYSIS_MODE_INELIGIBLE [62/62]
+10:20:40.317 INFO  Sensor JavaScript analysis [javascript] (done) | time=10036ms
+10:20:40.317 INFO  Sensor TypeScript analysis [javascript]
+10:20:40.320 INFO  No input files found for analysis
+10:20:40.321 INFO  Hit the cache for 0 out of 0
+10:20:40.321 INFO  Miss the cache for 0 out of 0
+10:20:40.321 INFO  Sensor TypeScript analysis [javascript] (done) | time=4ms
+10:20:40.321 INFO  Sensor JavaScript inside YAML analysis [javascript]
+10:20:40.324 INFO  No input files found for analysis
+10:20:40.324 INFO  Hit the cache for 0 out of 0
+10:20:40.325 INFO  Miss the cache for 0 out of 0
+10:20:40.325 INFO  Sensor JavaScript inside YAML analysis [javascript] (done) | time=4ms
+10:20:40.325 INFO  Sensor CSS Rules [javascript]
+10:20:40.334 INFO  17 source files to be analyzed
+10:20:40.710 INFO  17/17 source files have been analyzed
+10:20:40.711 INFO  Hit the cache for 0 out of 0
+10:20:40.711 INFO  Miss the cache for 0 out of 0
+10:20:40.711 INFO  Sensor CSS Rules [javascript] (done) | time=386ms
+10:20:40.711 INFO  Sensor CSS Metrics [javascript]
+10:20:40.852 INFO  Sensor CSS Metrics [javascript] (done) | time=141ms
+10:20:40.852 INFO  Sensor C# Project Type Information [csharp]
+10:20:40.854 INFO  Sensor C# Project Type Information [csharp] (done) | time=2ms
+10:20:40.854 INFO  Sensor C# Analysis Log [csharp]
+10:20:40.867 INFO  Sensor C# Analysis Log [csharp] (done) | time=13ms
+10:20:40.867 INFO  Sensor C# Properties [csharp]
+10:20:40.868 INFO  Sensor C# Properties [csharp] (done) | time=1ms
+10:20:40.868 INFO  Sensor HTML [web]
+10:20:40.910 INFO  Sensor HTML [web] (done) | time=42ms
+10:20:40.910 INFO  Sensor TextAndSecretsSensor [text]
+10:20:40.920 INFO  84 source files to be analyzed
+10:20:41.537 INFO  84/84 source files have been analyzed
+10:20:41.537 INFO  Sensor TextAndSecretsSensor [text] (done) | time=627ms
+10:20:41.538 INFO  Sensor VB.NET Project Type Information [vbnet]
+10:20:41.539 INFO  Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
+10:20:41.539 INFO  Sensor VB.NET Analysis Log [vbnet]
+10:20:41.551 INFO  Sensor VB.NET Analysis Log [vbnet] (done) | time=12ms
+10:20:41.551 INFO  Sensor VB.NET Properties [vbnet]
+10:20:41.551 INFO  Sensor VB.NET Properties [vbnet] (done) | time=0ms
+10:20:41.551 INFO  Sensor IaC Docker Sensor [iac]
+10:20:41.555 INFO  1 source file to be analyzed
+10:20:41.678 INFO  1/1 source file has been analyzed
+10:20:41.678 INFO  Sensor IaC Docker Sensor [iac] (done) | time=127ms
+10:20:41.683 INFO  ------------- Run sensors on project
+10:20:41.804 INFO  Sensor Analysis Warnings import [csharp]
+10:20:41.805 INFO  Sensor Analysis Warnings import [csharp] (done) | time=1ms
+10:20:41.805 INFO  Sensor Zero Coverage Sensor
+10:20:41.837 INFO  Sensor Zero Coverage Sensor (done) | time=32ms
+10:20:41.866 INFO  CPD Executor 10 files had no CPD blocks
+10:20:41.866 INFO  CPD Executor Calculating CPD for 53 files
+10:20:41.918 INFO  CPD Executor CPD calculation finished (done) | time=51ms
+10:20:42.030 INFO  Analysis report generated in 104ms, dir size=721.4 kB
+10:20:42.200 INFO  Analysis report compressed in 170ms, zip size=411.0 kB
+10:20:42.238 INFO  Analysis report uploaded in 38ms
+10:20:42.240 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://35.180.58.193:9000/dashboard?id=BMS
+10:20:42.240 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+10:20:42.240 INFO  More about the report processing at http://35.180.58.193:9000/api/ce/task?id=AZlHvcFut5BHwl8j5Bpv
+10:20:42.936 INFO  Analysis total time: 19.610 s
+10:20:42.938 INFO  EXECUTION SUCCESS
+10:20:42.938 INFO  Total time: 22.705s
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Quality Gate)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] waitForQualityGate
+Checking status of SonarQube task 'AZlHvcFut5BHwl8j5Bpv' on server 'sonar-server'
+SonarQube task 'AZlHvcFut5BHwl8j5Bpv' status is 'IN_PROGRESS'
+SonarQube task 'AZlHvcFut5BHwl8j5Bpv' status is 'SUCCESS'
+SonarQube task 'AZlHvcFut5BHwl8j5Bpv' completed. Quality gate is 'OK'
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Install Dependencies)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app
+[Pipeline] {
+[Pipeline] sh
++ ls -la
+total 1584
+drwxr-xr-x 4 jenkins jenkins    4096 Sep 14 10:20 .
+drwxr-xr-x 6 jenkins jenkins    4096 Sep 14 10:20 ..
+-rw-r--r-- 1 jenkins jenkins     591 Sep 14 10:20 Dockerfile
+-rw-r--r-- 1 jenkins jenkins    3369 Sep 14 10:20 README.md
+-rw-r--r-- 1 jenkins jenkins 1592100 Sep 14 10:20 package-lock.json
+-rw-r--r-- 1 jenkins jenkins    1422 Sep 14 10:20 package.json
+drwxr-xr-x 3 jenkins jenkins    4096 Sep 14 10:20 public
+drwxr-xr-x 7 jenkins jenkins    4096 Sep 14 10:20 src
++ [ -f package.json ]
++ rm -rf node_modules package-lock.json
++ npm install
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated move-concurrently@1.0.1: This package is no longer supported.
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+npm warn deprecated flatten@1.0.3: flatten is deprecated in favor of utility frameworks such as lodash.
+npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated figgy-pudding@3.5.2: This module is no longer supported.
+npm warn deprecated @hapi/topo@3.1.6: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated @hapi/bourne@1.3.2: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated rollup-plugin-terser@5.3.1: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+npm warn deprecated @humanwhocodes/config-array@0.5.0: Use @eslint/config-array instead
+npm warn deprecated copy-concurrently@1.0.5: This package is no longer supported.
+npm warn deprecated lodash.template@4.5.0: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+npm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm warn deprecated querystring@0.2.1: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+npm warn deprecated
+npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+npm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated sane@4.1.0: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
+npm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+npm warn deprecated @hapi/address@2.1.4: Moved to 'npm install @sideway/address'
+npm warn deprecated @humanwhocodes/object-schema@1.2.1: Use @eslint/object-schema instead
+npm warn deprecated rollup-plugin-babel@4.4.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-babel.
+npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm warn deprecated @hapi/hoek@8.5.1: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated workbox-google-analytics@5.1.4: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+npm warn deprecated @hapi/joi@15.1.1: Switch to 'npm install joi'
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm warn deprecated @material-ui/styles@4.11.5: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+npm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+npm warn deprecated @material-ui/core@4.12.4: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+
+added 2331 packages, and audited 2540 packages in 2m
+
+251 packages are looking for funding
+  run `npm fund` for details
+
+139 vulnerabilities (100 moderate, 32 high, 7 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (OWASP Dependency Check)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dependencyCheck
+[INFO] Checking for updates
+[INFO] Skipping the NVD API Update as it was completed within the last 240 minutes
+[INFO] Skipping Known Exploited Vulnerabilities update check since last check was within 24 hours.
+[INFO] Check for updates complete (588 ms)
+[INFO] 
+
+Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user's risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
+
+
+   About ODC: https://dependency-check.github.io/DependencyCheck/general/internals.html
+   False Positives: https://dependency-check.github.io/DependencyCheck/general/suppression.html
+
+💖 Sponsor: https://github.com/sponsors/jeremylong
+
+
+[INFO] Analysis Started
+[INFO] Finished File Name Analyzer (0 seconds)
+[ERROR] ----------------------------------------------------
+[ERROR] .NET Assembly Analyzer could not be initialized and at least one 'exe' or 'dll' was scanned. The 'dotnet' executable could not be found on the path; either disable the Assembly Analyzer or add the path to dotnet core in the configuration.
+[ERROR] The dotnet 8.0 core runtime or SDK is required to analyze assemblies
+[ERROR] ----------------------------------------------------
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[WARN] dependency skipped: package.json contain an alias for string-width-cjs => string-width@^4.2.0 npm audit doesn't support aliases
+[WARN] dependency skipped: package.json contain an alias for strip-ansi-cjs => strip-ansi@^6.0.1 npm audit doesn't support aliases
+[WARN] dependency skipped: package.json contain an alias for wrap-ansi-cjs => wrap-ansi@^7.0.0 npm audit doesn't support aliases
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/node_modules/eastasianwidth/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/agent/node_modules/socks-proxy-agent/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@isaacs/string-locale-compare/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/map-workspaces/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/metavuln-calculator/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/name-from-folder/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/query/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/redact/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/bin-links/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/common-ancestor-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/json-stringify-nice/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-install-checks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/parse-conflict-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/proggy/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/promise-all-reject-late/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/promise-call-limit/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/read-package-json-fast/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/treeverse/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/@npmcli/map-workspaces/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/installed-package-contents/node_modules/npm-bundled/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/installed-package-contents/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/map-workspaces/node_modules/@npmcli/name-from-folder/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/map-workspaces/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-packlist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/package-json/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/package-json/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@sigstore/tuf/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/@sigstore/tuf/node_modules/tuf-js/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/cmd-shim/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/read-cmd-shim/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/cacache/node_modules/tar/node_modules/@isaacs/fs-minipass/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/foreground-child/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/jackspeak/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/package-json-from-dist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/path-scurry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/promzard/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/validate-npm-package-name/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/ip-address/node_modules/jsbn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/is-cidr/node_modules/cidr-regex/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/jackspeak/node_modules/@isaacs/cliui/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmaccess/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmaccess/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/diff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/read-package-json-fast/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmfund/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmhook/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmorg/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmsearch/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmteam/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/@npmcli/agent/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/http-cache-semantics/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/minipass-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/minipass-fetch/node_modules/minipass-sized/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/env-paths/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/exponential-backoff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/tinyglobby/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/tar/node_modules/@isaacs/fs-minipass/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/nopt/node_modules/abbrev/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-bundled/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-package-arg/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-package-arg/node_modules/validate-npm-package-name/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-packlist/node_modules/ignore-walk/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-install-checks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-profile/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-profile/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/@npmcli/redact/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/jsonparse/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/minipass-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-packlist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/parse-conflict-json/node_modules/just-diff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/parse-conflict-json/node_modules/just-diff-apply/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/promise-retry/node_modules/err-code/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/promzard/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/read/node_modules/mute-stream/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/read-package-json-fast/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/tuf/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/bundle/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/bundle/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/core/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/bundle/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/core/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/socks/node_modules/ip-address/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/socks/node_modules/smart-buffer/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/socks-proxy-agent/node_modules/socks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/tuf-js/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/tuf-js/node_modules/@tufjs/models/node_modules/@tufjs/canonical-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/koti-BMS-App/bookmyshow-app/node_modules/npm/node_modules/wrap-ansi/node_modules/string-width/node_modules/eastasianwidth/package.json
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[INFO] Finished Node.js Package Analyzer (24 seconds)
+[INFO] Finished Dependency Merging Analyzer (16 seconds)
+[INFO] Finished Hint Analyzer (1 seconds)
+[INFO] Finished Version Filter Analyzer (0 seconds)
+[INFO] Created CPE Index (3 seconds)
+[INFO] Finished CPE Analyzer (12 seconds)
+[INFO] Finished False Positive Analyzer (0 seconds)
+[INFO] Finished NVD CVE Analyzer (0 seconds)
+[INFO] Finished RetireJS Analyzer (327 seconds)
+[INFO] Finished Sonatype OSS Index Analyzer (0 seconds)
+[INFO] Finished Vulnerability Suppression Analyzer (0 seconds)
+[INFO] Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[INFO] Finished Dependency Bundling Analyzer (278 seconds)
+[INFO] Finished Unused Suppression Rule Analyzer (0 seconds)
+[INFO] Analysis Complete (662 seconds)
+[INFO] Writing XML report to: /var/lib/jenkins/workspace/koti-BMS-App/./dependency-check-report.xml
+[Pipeline] dependencyCheckPublisher
+Collecting Dependency-Check artifact
+Parsing file /var/lib/jenkins/workspace/koti-BMS-App/dependency-check-report.xml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Trivy FS Scan)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ trivy fs .
+2025-09-14T10:34:17Z	INFO	[vuln] Vulnerability scanning is enabled
+2025-09-14T10:34:17Z	INFO	[secret] Secret scanning is enabled
+2025-09-14T10:34:17Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-09-14T10:34:17Z	INFO	[secret] Please see https://trivy.dev/v0.66/docs/scanner/secret#recommendation for faster secret detection
+2025-09-14T10:34:20Z	WARN	[secret] The size of the scanned file is too large. It is recommended to use `--skip-files` for this file to avoid high memory consumption.	file_path="dependency-check-report.xml" size (MB)=27
+2025-09-14T10:34:25Z	INFO	Number of language-specific files	num=1
+2025-09-14T10:34:25Z	INFO	[npm] Detecting vulnerabilities...
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build & Push)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ /var/lib/jenkins/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin/docker login -u koti02 -p ******** https://index.docker.io/v1/
+Login Succeeded
+[Pipeline] {
+[Pipeline] sh
++ echo Building Docker image...
+Building Docker image...
++ docker build --no-cache -t koti02/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  572.2MB
+
+Step 1/10 : FROM node:18
+18: Pulling from library/node
+3e6b9d1a9511: Pulling fs layer
+37927ed901b1: Pulling fs layer
+79b2f47ad444: Pulling fs layer
+e23f099911d6: Pulling fs layer
+cda7f44f2bdd: Pulling fs layer
+c6b30c3f1696: Pulling fs layer
+3697be50c98b: Pulling fs layer
+461077a72fb7: Pulling fs layer
+e23f099911d6: Waiting
+cda7f44f2bdd: Waiting
+c6b30c3f1696: Waiting
+3697be50c98b: Waiting
+461077a72fb7: Waiting
+37927ed901b1: Verifying Checksum
+37927ed901b1: Download complete
+79b2f47ad444: Verifying Checksum
+79b2f47ad444: Download complete
+3e6b9d1a9511: Verifying Checksum
+3e6b9d1a9511: Download complete
+cda7f44f2bdd: Verifying Checksum
+cda7f44f2bdd: Download complete
+3697be50c98b: Verifying Checksum
+3697be50c98b: Download complete
+c6b30c3f1696: Verifying Checksum
+c6b30c3f1696: Download complete
+461077a72fb7: Verifying Checksum
+461077a72fb7: Download complete
+e23f099911d6: Verifying Checksum
+e23f099911d6: Download complete
+3e6b9d1a9511: Pull complete
+37927ed901b1: Pull complete
+79b2f47ad444: Pull complete
+e23f099911d6: Pull complete
+cda7f44f2bdd: Pull complete
+c6b30c3f1696: Pull complete
+3697be50c98b: Pull complete
+461077a72fb7: Pull complete
+Digest: sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783
+Status: Downloaded newer image for node:18
+ ---> b50082bc3670
+Step 2/10 : WORKDIR /app
+ ---> Running in 8152ceca416f
+ ---> Removed intermediate container 8152ceca416f
+ ---> d9853dbaafd4
+Step 3/10 : COPY package.json package-lock.json ./
+ ---> 35ed327d13a2
+Step 4/10 : RUN npm install postcss@8.4.21 postcss-safe-parser@6.0.0 --legacy-peer-deps
+ ---> Running in e97634a8a738
+[91mnpm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+[0m[91mnpm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+[0m[91mnpm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+[0m[91mnpm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+[0m[91mnpm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+[0m[91mnpm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+[0m[91mnpm warn deprecated rollup-plugin-terser@5.3.1: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+[0m[91mnpm warn deprecated sane@4.1.0: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
+[0m[91mnpm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[0m[91mnpm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+[0m[91mnpm warn deprecated workbox-google-analytics@5.1.4: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+[0m[91mnpm warn deprecated rollup-plugin-babel@4.4.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-babel.
+[0m[91mnpm warn deprecated querystring@0.2.1: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+[0m[91mnpm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+npm warn deprecated
+npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+[0m[91mnpm warn deprecated move-concurrently@1.0.1: This package is no longer supported.
+[0m[91mnpm warn deprecated lodash.template@4.5.0: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
+[0m[91mnpm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[0m[91mnpm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[0m[91mnpm warn deprecated flatten@1.0.3: flatten is deprecated in favor of utility frameworks such as lodash.
+[0m[91mnpm warn deprecated figgy-pudding@3.5.2: This module is no longer supported.
+[0m[91mnpm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+[0m[91mnpm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+[0m[91mnpm warn deprecated copy-concurrently@1.0.5: This package is no longer supported.
+[0m[91mnpm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+[0m[91mnpm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+[0m[91mnpm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+[0m[91mnpm warn deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+[0m[91mnpm warn deprecated @hapi/topo@3.1.6: This version has been deprecated and is no longer supported or maintained
+[0m[91mnpm warn deprecated @humanwhocodes/config-array@0.5.0: Use @eslint/config-array instead
+[0m[91mnpm warn deprecated @hapi/bourne@1.3.2: This version has been deprecated and is no longer supported or maintained
+[0m[91mnpm warn deprecated @humanwhocodes/object-schema@1.2.1: Use @eslint/object-schema instead
+[0m[91mnpm warn deprecated @hapi/address@2.1.4: Moved to 'npm install @sideway/address'
+[0m[91mnpm warn deprecated @hapi/hoek@8.5.1: This version has been deprecated and is no longer supported or maintained
+[0m[91mnpm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+[0m[91mnpm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+[0m[91mnpm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+[0m[91mnpm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+[0m[91mnpm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+[0m[91mnpm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+[0m[91mnpm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+[0m[91mnpm warn deprecated @hapi/joi@15.1.1: Switch to 'npm install joi'
+[0m[91mnpm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+[0m[91mnpm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+[0m[91mnpm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+[0m[91mnpm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+[0m[91mnpm warn deprecated @material-ui/styles@4.11.5: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+[0m[91mnpm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[0m[91mnpm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+[0m[91mnpm warn deprecated @material-ui/core@4.12.4: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+[0m
+added 2320 packages, and audited 2529 packages in 59s
+
+251 packages are looking for funding
+  run `npm fund` for details
+
+137 vulnerabilities (98 moderate, 32 high, 7 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[91mnpm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+npm notice To update run: npm install -g npm@11.6.0
+npm notice
+[0m ---> Removed intermediate container e97634a8a738
+ ---> 08f333a89095
+Step 5/10 : RUN npm install
+ ---> Running in c667f328919f
+[91mnpm warn ERESOLVE overriding peer dependency
+[0m[91mnpm warn While resolving: react-only-when@1.0.2
+npm warn Found: react@17.0.2
+npm warn node_modules/react
+npm warn   react@"^17.0.1" from the root project
+npm warn   58 more (@ant-design/icons, @ant-design/react-slick, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+npm warn node_modules/react-elastic-carousel/node_modules/react-only-when
+npm warn   react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+npm warn   node_modules/react-elastic-carousel
+npm warn
+npm warn Conflicting peer dependency: react@16.14.0
+npm warn node_modules/react
+npm warn   peer react@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+npm warn   node_modules/react-elastic-carousel/node_modules/react-only-when
+npm warn     react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+npm warn     node_modules/react-elastic-carousel
+[0m[91mnpm warn ERESOLVE overriding peer dependency
+[0m[91mnpm warn While resolving: react-only-when@1.0.2
+npm warn Found: react-dom@17.0.2
+npm warn node_modules/react-dom
+npm warn   react-dom@"^17.0.1" from the root project
+npm warn   50 more (@ant-design/icons, @material-ui/core, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-dom@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+npm warn node_modules/react-elastic-carousel/node_modules/react-only-when
+npm warn   react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+npm warn   node_modules/react-elastic-carousel
+npm warn
+npm warn Conflicting peer dependency: react-dom@16.14.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+npm warn   node_modules/react-elastic-carousel/node_modules/react-only-when
+npm warn     react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+npm warn     node_modules/react-elastic-carousel
+[0m[91mnpm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-swipeable@5.5.1
+npm warn Found: react@17.0.2
+npm warn node_modules/react
+npm warn   react@"^17.0.1" from the root project
+npm warn   58 more (@ant-design/icons, @ant-design/react-slick, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^16.0.0-0" from react-swipeable@5.5.1
+npm warn node_modules/react-elastic-carousel/node_modules/react-swipeable
+npm warn   react-swipeable@"^5.5.1" from react-elastic-carousel@0.11.5
+npm warn   node_modules/react-elastic-carousel
+npm warn
+npm warn Conflicting peer dependency: react@16.14.0
+npm warn node_modules/react
+npm warn   peer react@"^16.0.0-0" from react-swipeable@5.5.1
+npm warn   node_modules/react-elastic-carousel/node_modules/react-swipeable
+npm warn     react-swipeable@"^5.5.1" from react-elastic-carousel@0.11.5
+npm warn     node_modules/react-elastic-carousel
+[0m
+added 8 packages, removed 17 packages, changed 1 package, and audited 2520 packages in 13s
+
+252 packages are looking for funding
+  run `npm fund` for details
+
+139 vulnerabilities (100 moderate, 32 high, 7 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+ ---> Removed intermediate container c667f328919f
+ ---> fc61aefca3f0
+Step 6/10 : COPY . .
+ ---> 68641c4ccecf
+Step 7/10 : EXPOSE 3000
+ ---> Running in 59b4d295d1f9
+ ---> Removed intermediate container 59b4d295d1f9
+ ---> 4f69d431eb7f
+Step 8/10 : ENV NODE_OPTIONS=--openssl-legacy-provider
+ ---> Running in 77d7607e560a
+ ---> Removed intermediate container 77d7607e560a
+ ---> d3f281a63174
+Step 9/10 : ENV PORT=3000
+ ---> Running in 994acb1ce9d2
+ ---> Removed intermediate container 994acb1ce9d2
+ ---> 92ae632548d9
+Step 10/10 : CMD ["npm", "start"]
+ ---> Running in 3f4a7f894a8e
+ ---> Removed intermediate container 3f4a7f894a8e
+ ---> f284fee5ffec
+Successfully built f284fee5ffec
+Successfully tagged koti02/bms:latest
++ echo Pushing Docker image...
+Pushing Docker image...
++ docker push koti02/bms:latest
+The push refers to repository [docker.io/koti02/bms]
+82f6061c2030: Preparing
+4fb72d6d6c22: Preparing
+d2d846e4d65b: Preparing
+ec442adf5c86: Preparing
+09bab616d5ac: Preparing
+d2a991bcab4d: Preparing
+b624aa2d5ea2: Preparing
+d399c9dc306f: Preparing
+84f9fa179c1b: Preparing
+ce84ba212e49: Preparing
+e4dc8cd9ecc8: Preparing
+6428cc293366: Preparing
+2f7436e79a0b: Preparing
+d2a991bcab4d: Waiting
+b624aa2d5ea2: Waiting
+d399c9dc306f: Waiting
+84f9fa179c1b: Waiting
+ce84ba212e49: Waiting
+e4dc8cd9ecc8: Waiting
+6428cc293366: Waiting
+2f7436e79a0b: Waiting
+09bab616d5ac: Pushed
+ec442adf5c86: Pushed
+d2a991bcab4d: Mounted from library/node
+b624aa2d5ea2: Mounted from library/node
+d399c9dc306f: Mounted from library/node
+84f9fa179c1b: Mounted from library/node
+ce84ba212e49: Mounted from library/node
+e4dc8cd9ecc8: Mounted from library/node
+6428cc293366: Mounted from library/node
+4fb72d6d6c22: Pushed
+2f7436e79a0b: Mounted from library/node
+82f6061c2030: Pushed
+d2d846e4d65b: Pushed
+latest: digest: sha256:122790fd9b2bd6714986047fe6d52e524fe2c179d471b9ea8fa4b938b6a90a83 size: 3058
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Container)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ echo Stopping old container (if any)...
+Stopping old container (if any)...
++ docker stop bms
+Error response from daemon: No such container: bms
++ true
++ docker rm bms
+Error response from daemon: No such container: bms
++ true
++ echo Running new container on port 3000...
+Running new container on port 3000...
++ docker run -d --restart=always --name bms -p 3000:3000 koti02/bms:latest
+2e2162d3c7b3fba9cdf5171b0b70f0c0829960248f353ae2a3abf9724abe9a4b
++ echo Checking running containers...
+Checking running containers...
++ docker ps -a
+CONTAINER ID   IMAGE                     COMMAND                  CREATED        STATUS                  PORTS                                       NAMES
+2e2162d3c7b3   koti02/bms:latest         "docker-entrypoint.s…"   1 second ago   Up Less than a second   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   bms
+d161ead3bb10   sonarqube:9.9-community   "/opt/sonarqube/dock…"   6 hours ago    Up 6 hours              0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   sonarqube
++ echo Fetching logs...
+Fetching logs...
++ sleep 5
++ docker logs bms
+
+> bookmyshow-app@0.1.0 start
+> NODE_OPTIONS=--openssl-legacy-provider react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://172.17.0.3/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /app/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+Sending email to: 20891a0488@gmail.com
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
